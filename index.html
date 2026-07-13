@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Speedy Reader — Free RSVP Speed Reading Drill</title>
+<meta name="description" content="A free, open-source alternative to Spreeder for RSVP speed-reading drills. Paste any text, set your WPM and chunk size, and go." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>⚡ Speedy Reader</h1>
+    <p class="tagline">A free RSVP speed-reading drill — paste any text, no paywall, no word limit.</p>
+  </header>
+
+  <main>
+    <section id="setup-view" class="view">
+      <div class="panel">
+        <label for="text-input">Drill text</label>
+        <textarea id="text-input" placeholder="Paste your spreading drill text here…" spellcheck="false"></textarea>
+        <div class="input-row">
+          <span id="word-count">0 words</span>
+          <div class="input-actions">
+            <button id="clear-btn" class="btn-ghost" type="button">Clear</button>
+            <button id="sample-btn" class="btn-ghost" type="button">Load sample text</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel settings-panel">
+        <h2>Settings</h2>
+        <div class="settings-grid">
+          <div class="setting">
+            <label for="wpm-input">Words per minute (WPM)</label>
+            <div class="stepper">
+              <button class="step-btn" data-target="wpm-input" data-step="-25" type="button" aria-label="Decrease WPM">−</button>
+              <input type="number" id="wpm-input" min="50" max="1500" step="5" value="200" />
+              <button class="step-btn" data-target="wpm-input" data-step="25" type="button" aria-label="Increase WPM">+</button>
+            </div>
+          </div>
+          <div class="setting">
+            <label for="chunk-input">Chunk size (words shown at once)</label>
+            <div class="stepper">
+              <button class="step-btn" data-target="chunk-input" data-step="-1" type="button" aria-label="Decrease chunk size">−</button>
+              <input type="number" id="chunk-input" min="1" max="10" step="1" value="1" />
+              <button class="step-btn" data-target="chunk-input" data-step="1" type="button" aria-label="Increase chunk size">+</button>
+            </div>
+          </div>
+        </div>
+        <p class="hint">Tip: struggling to keep up? Drop WPM by ~20. Keeping up easily? Push it up by ~25 and challenge yourself.</p>
+        <p class="hint" id="best-wpm-hint"></p>
+      </div>
+
+      <button id="start-btn" class="btn-primary" type="button" disabled>Start drill</button>
+    </section>
+
+    <section id="reader-view" class="view hidden">
+      <div class="reader-stage">
+        <div class="orp-guide" aria-hidden="true"></div>
+        <div id="word-display" class="word-display">Ready</div>
+      </div>
+
+      <div class="progress-row">
+        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+        <span id="progress-label">0 / 0</span>
+      </div>
+
+      <div class="controls">
+        <button id="restart-btn" class="btn-ghost" type="button" title="Restart from beginning">⟲ Restart</button>
+        <button id="play-pause-btn" class="btn-primary" type="button">▶ Play</button>
+        <button id="back-btn" class="btn-ghost" type="button" title="Back to text editor">✎ Edit text</button>
+      </div>
+
+      <div class="live-settings panel">
+        <div class="setting">
+          <label for="live-wpm-input">WPM</label>
+          <div class="stepper">
+            <button class="step-btn" data-target="live-wpm-input" data-step="-25" type="button" aria-label="Decrease WPM">−</button>
+            <input type="number" id="live-wpm-input" min="50" max="1500" step="5" value="200" />
+            <button class="step-btn" data-target="live-wpm-input" data-step="25" type="button" aria-label="Increase WPM">+</button>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="live-chunk-input">Chunk size</label>
+          <div class="stepper">
+            <button class="step-btn" data-target="live-chunk-input" data-step="-1" type="button" aria-label="Decrease chunk size">−</button>
+            <input type="number" id="live-chunk-input" min="1" max="10" step="1" value="1" />
+            <button class="step-btn" data-target="live-chunk-input" data-step="1" type="button" aria-label="Increase chunk size">+</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="hint">Keyboard: <kbd>Space</kbd> play/pause · <kbd>←</kbd>/<kbd>→</kbd> jump 5 chunks · <kbd>↑</kbd>/<kbd>↓</kbd> WPM ±25</p>
+    </section>
+
+    <section id="done-view" class="view hidden">
+      <div class="panel done-panel">
+        <h2>Drill complete 🎉</h2>
+        <p>You finished at <strong id="final-wpm">0</strong> WPM.</p>
+        <p class="hint">Log your top sustainable WPM and use it as your starting point next time.</p>
+        <div class="controls">
+          <button id="done-restart-btn" class="btn-primary" type="button">Run it again</button>
+          <button id="done-new-text-btn" class="btn-ghost" type="button">New text</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Free &amp; open source, runs entirely in your browser — no text is ever uploaded. <a href="https://github.com/wastella/speedy-reader" id="repo-link" target="_blank" rel="noopener">View source</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
