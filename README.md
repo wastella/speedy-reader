@@ -6,7 +6,7 @@ trainer.
 Built as a replacement for the free tier of spreeder.com, which caps
 free drills at 200 words.
 
-## Build instructions
+## Access
 
 Live site: **https://wastella.github.io/speedy-reader/**
 
