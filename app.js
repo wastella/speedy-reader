@@ -171,14 +171,14 @@
     if (words.length === 0) return;
     if (chunkIndex >= chunks.length) chunkIndex = 0;
     playing = true;
-    playPauseBtn.textContent = "⏸ Pause";
+    playPauseBtn.textContent = "Pause";
     scheduleNext();
   }
 
   function pause() {
     playing = false;
     clearTimeout(timerId);
-    playPauseBtn.textContent = "▶ Play";
+    playPauseBtn.textContent = "Play";
   }
 
   function togglePlayPause() {
@@ -189,7 +189,7 @@
   function finishDrill() {
     playing = false;
     clearTimeout(timerId);
-    playPauseBtn.textContent = "▶ Play";
+    playPauseBtn.textContent = "Play";
     finalWpmEl.textContent = currentLiveWpm();
     saveSettings(currentLiveWpm(), currentLiveChunkSize());
     showView(doneView);

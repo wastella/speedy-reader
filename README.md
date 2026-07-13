@@ -24,8 +24,8 @@ python3 -m http.server 8000
 3. Click **Start drill** and read along.
 4. While it's running you can adjust WPM and chunk size live, jump forward
    or back, and pause using the on-screen controls or these keys:
-   - `Space` — play / pause
-   - `←` / `→` — jump back / forward 5 chunks
-   - `↑` / `↓` — WPM ±25
+   - `Space`: play or pause
+   - `←` / `→`: jump back or forward 5 chunks
+   - `↑` / `↓`: change WPM by 25
 5. Your last-used WPM and chunk size are saved in your browser
    (`localStorage`) so the app starts there next time. Use it to progressively overload.
